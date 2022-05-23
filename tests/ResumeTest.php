@@ -143,7 +143,7 @@ class ResumeTest extends TestCase
       'password'  => Hash::make('123123123')
     ]);
 
-    UserExperience::create([
+    $expr = UserExperience::create([
       'id'              => 1234,
       'user_id'         => $user->id,
       'start_date'      => Date::now(),
@@ -154,7 +154,7 @@ class ResumeTest extends TestCase
 
 
     $this->actingAs($user, 'api')
-    ->delete('api/resume/1234', [], [])
+    ->delete('api/resume/1234'.$expr->id, [], [])
     ->assertResponseOk();
     return User::find($user->id)->delete();
   }
