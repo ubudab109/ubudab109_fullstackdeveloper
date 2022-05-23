@@ -129,3 +129,4 @@ class ResumeTest extends TestCase
     ->assertResponseOk();
     return User::find($user->id)->delete();
   }
+}
